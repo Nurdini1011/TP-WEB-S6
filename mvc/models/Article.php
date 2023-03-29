@@ -1,6 +1,7 @@
 <?php
 
-require_once("../app/Model.php");
+require_once('../app/Model.php');	
+
 
 class Article extends Model {
 
