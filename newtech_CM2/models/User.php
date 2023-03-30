@@ -1,12 +1,12 @@
 <?php
 
-class User {
+require_once('Model.php');
+
+class User extends Model {
 
     public $table = "Users";
 
     public $id;
-
-    protected $_connexion;
 
     public $username;
 
@@ -22,22 +22,8 @@ class User {
 
     public function __construct() {
         $this->getConnexion();
+        $this->$table = "Users";
     }
-
-    public function getConnexion(){
-        $this->_connexion = null;
-        try {
-            //l'objet utilisé ici sera PDO
-            $this->_connexion = new PDO(
-                'mysql:host=localhost;dbname=tp_connection',
-                'root',
-                'orange'
-            );
-        } catch (PDOException $exciption) {
-            echo "Err : " . $exciption->getMessage();
-        }
-    }
-  
 
     public function check(){
 
@@ -52,6 +38,16 @@ class User {
         else
             return 0; 
 
+    }
+
+    public function addUser($username, $email, $password, $role){
+        $now = date("Y-m-d H:i:s"); // get current time
+    
+        $sql = "INSERT INTO Users (username, email, password, role, created_at, updated_at) VALUES (:username, :email, :password, :role, :created_at, :updated_at)";
+        $query = $this->_connexion->prepare($sql);
+        $marq=array('nom'=>$_POST['nom'],'prenom'=>$_POST['prenom'],'pseudo'=>$_POST['login'],'mdp'=>$_POST['mdp'],'mail'=>$_POST['mail'],'jour'=>$_POST['jour'],'mois'=>$_POST['mois'],'annee'=>$_POST['année'],'genre'=>$_POST['genre'],'relation'=>$_POST['relation']);
+        $query->execute($marq);
+        $query->closeCursor();
     }
 
 }
