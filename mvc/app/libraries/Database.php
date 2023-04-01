@@ -1,7 +1,5 @@
 <?php
 
-require_once("../config/config.php");
-
 class Database {
     // modele de donnees de haut niveaux
     private $host = DB_HOST;

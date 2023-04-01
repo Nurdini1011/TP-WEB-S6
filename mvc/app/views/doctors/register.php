@@ -1,35 +1,59 @@
-<!-- ../views/doctors/register.php -->
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registration Page</title>
-</head>
-<body>
-    <h1>Registration Page</h1>
-    <form action="" method="POST">
-        <input type="text" name="name" placeholder="Name" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>" required>
-        <?php if (!empty($data['name_error'])) { echo '<span>' . $data['name_error'] . '</span>'; } ?>
-        <br>
-        <input type="email" name="email" placeholder="Email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" required>
-        <?php if (!empty($data['email_error'])) { echo '<span>' . $data['email_error'] . '</span>'; } ?>
-        <br>
-        <input type="password" name="password" placeholder="Password" required>
-        <?php if (!empty($data['password_error'])) { echo '<span>' . $data['password_error'] . '</span>'; } ?>
-        <br>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-        <?php if (!empty($data['confirm_error'])) { echo '<span>' . $data['confirm_error'] . '</span>'; } ?>
-        <br>
-        <select name="specialty" required>
-            <option value="">-- Select Specialty --</option>
-            <option value="Cardiology">Cardiology</option>
-            <option value="Dermatology">Dermatology</option>
-            <option value="Endocrinology">Endocrinology</option>
-            <option value="Gastroenterology">Gastroenterology</option>
-            <option value="Neurology">Neurology</option>
-        </select>
-        <br>
-        <button type="submit" name="submit">Register</button>
-    </form>
-</body>
-</html>
+<div id="boutonpopup">
+    <button onclick="ouvrirlapopup()"  name="envoi" type="submit" value="envoi">Register now</button>
+    <div class="trait"></div>
+    <!-- Bloc s'inscrire -->
+    
+        <div id="inscrp">
+            <form action="" method="post">
+            <button id="fermer-button" onclick="fermerlapopup()"> X </button>   
+                  
+                    <div class="col-lg-12">
+                      <div class="section-heading">
+                        <h2><em>Register </em> &amp; Save <span> your patients' information</span></h2>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <input name="name" id="name" type="tewt" placeholder="Name" autocomplete="off" required="">
+                      </fieldset>
+                    </div> 
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <input name="email" id="email" type="email" placeholder="Email" autocomplete="off" required="">
+                      </fieldset>
+                    </div> 
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <input type="name" name="password" id="password" placeholder="Password" autocomplete="off" required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <input type="name" name="password2" id="password2" placeholder="Confirm your password" autocomplete="off" required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <!-- Relation -->
+                      <div class="v">
+                        <label for="relation">Relation</label>
+                      </div>
+                      <div class="row">
+                        
+                        <div>
+                          <label for="relation"></label>Célibataire<input type= "radio" value="Celibataire"  name= "relation" class= "celib" /> 
+                        </div>
+                        <div>
+                          <label for="relation"></label>En couple<input type= "radio" value="En couple" name= "relation" class= "couple" />
+                        </div>
+                        <div>
+                          <label for="relation"></label>Autre<input type= "radio" value="Autre" name= "relation" class= "autre" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="orange-button">Register</button>
+                      </fieldset>
+                    </div>
+                  </form> 
+</div> 

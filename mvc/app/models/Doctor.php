@@ -1,7 +1,5 @@
 <?php
 
-require_once('../libraries/Database.php');
-
 class Doctor {
 
     private $id;
@@ -9,6 +7,7 @@ class Doctor {
     private $db;
 
     public function __construct() {
+        echo "doctor models constructor\n";
         $this->db = new Database();
     }
 
@@ -17,7 +16,7 @@ class Doctor {
         $sql = "SELECT * FROM Doctors WHERE email ='" . $email . "'";
         $this->db->prepare($sql);
         $this->db->execute();
-        $this->db->single();
+        $result = $this->db->single();
 
         if($this->db->rowCount() === 0)
             return false;
@@ -31,9 +30,10 @@ class Doctor {
         $sql = "SELECT * FROM Doctors WHERE email ='" . $email . "'";
         $this->db->prepare($sql);
         $this->db->execute();
+        $result = $this->db->single();
 
         // verify the password in the database
-        $verify = password_verify($password, $this->db->single()->password);
+        $verify = password_verify($password, $result['password']);
         echo $verify;
 
     }
@@ -44,7 +44,8 @@ class Doctor {
             // register Doctor in database
             $sql = "INSERT INTO `Doctors` (`idDoctor`, `name`, `email`,`password`, `specialty`) 
                 VALUES (NULL,'".$data['name']."','".$data['email']."', '".$data['password']."', '".$data['specialty']."')";
-            $this->bd->prepare($sql);
+                echo "$sql\n";
+            $this->db->prepare($sql);
             $this->db->execute();
             $this->db->single();
             return true;
@@ -54,10 +55,6 @@ class Doctor {
             return false;
         }
     }
-
-    // if (isset($account['password']) && $account['password'] === $this->password) {
-    //     // ...
-    // }
 
     public function getDoctorById($idDoctor){
 
@@ -74,18 +71,5 @@ class Doctor {
     }
     
 }
-
-$doctor = new Doctor();
-// check the doctor by ID and it return an array
-$getDoctor = $doctor->getDoctorById(1);
-
-// afficher array
-var_dump($getDoctor);
-
-$existedDoctor = $doctor->fetchDoctorByEmail('dini@gmail.com');
-$notExistedDoctor = $doctor->fetchDoctorByEmail('sarag@gmail.com');
-echo "existed $existedDoctor\n";
-echo "not existed $notExistedDoctor\n";
-
 
 ?>

@@ -14,14 +14,10 @@ abstract class Controller {
         if(!empty($data))
             extract($data);
 
-        // On démarre le buffer de sortie 
-        ob_start();
-
         //On génère la vue
         require_once(APPROOT . 'views/inc/header.php');
 
-        //On stocke le contenu dans Scontent
-        $content = ob_get_clean();
+        require_once(APPROOT . 'views' . $vue . '.php');
 
         // On fabrique le "template" de footer
         require_once(APPROOT . 'views/inc/footer.php');

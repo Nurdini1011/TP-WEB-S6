@@ -1,7 +1,6 @@
 <?php
-
-    function redirect($page){
-        header('Location:' . $page);
-    }
-
+function redirect($page)
+{
+    header('Location:index.php?url=' . $page);
+}
 ?>
